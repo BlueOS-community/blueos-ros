@@ -21,7 +21,7 @@ You can also access the data via [roslibjs]([url](http://wiki.ros.org/roslibjs)h
 
 <script type="text/javascript" type="text/javascript">
   var ros = new ROSLIB.Ros({
-    url : 'ws://192.168.0.79:8889'
+    url : 'ws://blueos.local:8889' // Change if necessary for your vehicle ip
   });
 
   ros.on('connection', function() {
