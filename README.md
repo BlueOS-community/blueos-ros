@@ -55,3 +55,29 @@ You can also access the data via [roslibjs]([url](http://wiki.ros.org/roslibjs)h
 </body>
 </html>
 ```
+
+## Use a different ROS master origin
+
+It's possible to change ROS master for the extension using BlueOS on pirate mode and configuring ROS environments variables under the extension configuration menu.
+
+A valid configurtion wouyld look like this:
+
+```json5
+{
+  "NetworkMode": "host",
+  "HostConfig": {
+  "Binds": [
+    "/dev:/dev:rw"
+  ],
+    "Privileged": true,
+    "NetworkMode": "host"
+  },
+  "Env": [
+    "ROS_HOSTNAME=192.168.2.2",
+    "ROS_MASTER_URI=http://192.168.2.3:11311",
+    "ROS_IP=192.168.2.2"
+  ]
+}
+```
+
+For more information about it, check [BlueOS documentation](https://blueos.cloud/docs/blueos/1.1/development/extensions/).
