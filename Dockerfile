@@ -6,7 +6,7 @@ RUN apt-get update && apt-get install -q -y --no-install-recommends \
     ros-${ROS_DISTRO}-rosbridge-server
 
 RUN wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
-RUN sudo bash ./install_geographiclib_datasets.sh 
+RUN sudo bash ./install_geographiclib_datasets.sh
 
 RUN apt-get install -y nginx wget netcat
 ADD files/install-ttyd.sh /install-ttyd.sh
