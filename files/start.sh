@@ -3,6 +3,8 @@
 echo "Starting.."
 [ ! -e /var/run/nginx.pid ] && nginx&
 
+ROS_MAVROS_FCU_URL="${ROS_MAVROS_FCU_URL:-tcp://0.0.0.0:5777@}"
+
 # Create a new tmux session
 tmux -f /etc/tmux.conf start-server
 tmux new -d -s "ROS"
@@ -15,7 +17,7 @@ tmux split-window -h
 
 tmux send-keys -t 0 "/ros_entrypoint.sh roscore" Enter
 tmux send-keys -t 1 "sleep 10 && /ros_entrypoint.sh roslaunch rosbridge_server rosbridge_websocket.launch port:=8889" Enter
-tmux send-keys -t 2 "while true; do sleep 10; /ros_entrypoint.sh roslaunch mavros apm.launch fcu_url:=tcp://0.0.0.0:5777@; done" Enter
+tmux send-keys -t 2 "while true; do sleep 10; /ros_entrypoint.sh roslaunch mavros apm.launch fcu_url:=${ROS_MAVROS_FCU_URL}; done" Enter
 tmux send-keys -t 3 "echo 'Hi! :)'" Enter
 
 function create_service {
